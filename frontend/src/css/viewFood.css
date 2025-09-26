@@ -1,0 +1,727 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.view-food-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Back Button */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.back-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.back-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Video Controls */
+.video-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 12px;
+}
+
+.control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.control-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Videos Container - Mobile First (Full Screen) */
+.videos-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-stop: always;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.videos-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Video Item - Full Viewport Height */
+.video-item {
+  width: 100%;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  overflow: hidden;
+  contain: layout style paint;
+}
+
+/* Video Player - Full Coverage */
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  cursor: pointer;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-video-playsinline: true;
+  -webkit-playsinline: true;
+  touch-action: manipulation;
+}
+
+.video-player.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.video-player:not(.loaded) {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Video Loading */
+.video-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  z-index: 2;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Video Overlay */
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 80px 20px 30px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.video-details {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.video-details h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.video-details p {
+  opacity: 0.9;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.video-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.action-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.action-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+.action-btn svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+}
+
+.action-btn span {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.like-btn:hover {
+  color: #ff3040;
+}
+
+/* Play/Pause Overlay */
+.play-pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 4;
+}
+
+.play-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.play-button:hover {
+  background-color: white;
+  transform: scale(1.05);
+}
+
+.play-button:active {
+  transform: scale(0.95);
+}
+
+.play-button svg {
+  width: 32px;
+  height: 32px;
+  color: #000;
+  margin-left: 4px; /* Optical alignment for play icon */
+}
+
+/* Mobile Responsive (Small screens) - Enhanced Full Screen */
+@media (max-width: 768px) {
+  html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .view-food-container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .videos-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+  
+  .video-item {
+    height: 100vh;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  
+  .video-player {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .back-button,
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    top: max(16px, env(safe-area-inset-top));
+  }
+
+  .back-button {
+    left: 16px;
+  }
+
+  .video-controls {
+    right: 16px;
+  }
+
+  .video-overlay {
+    padding: 60px 16px max(24px, env(safe-area-inset-bottom));
+    bottom: 0;
+  }
+  
+  .video-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .action-buttons {
+    gap: 12px;
+  }
+
+  .action-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .play-button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .play-button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Desktop/Laptop Responsive - Centered Mobile Frame */
+@media (min-width: 769px) {
+  .view-food-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: #000;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .videos-container {
+    width: 390px;
+    height: 100vh;
+    max-height: 844px;
+    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    contain: layout style;
+    transform: translateZ(0);
+  }
+  
+  .video-item {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .back-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 1001;
+  }
+
+  .video-controls {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 1001;
+  }
+
+  .video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Large Desktop Responsive */
+@media (min-width: 1200px) {
+  .videos-container {
+    width: 375px;
+    max-height: 812px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .videos-container {
+    width: 390px;
+    max-height: 844px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .video-overlay {
+    padding: 40px 16px 16px;
+  }
+  
+  .action-buttons {
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  /* Ensure full screen in landscape */
+  .video-player {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .view-food-container {
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .videos-container {
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .video-item {
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .video-player {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .videos-container {
+    scroll-behavior: auto;
+  }
+  
+  .loading-spinner {
+    animation: none;
+  }
+}
+
+/* Focus states for accessibility */
+.back-button:focus,
+.control-btn:focus,
+.action-btn:focus,
+.play-button:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .back-button,
+  .control-btn,
+  .action-btn {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid white;
+  }
+}
+
+/* Performance optimizations */
+.video-player {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.video-item {
+  contain: layout style paint;
+}
+
+.videos-container {
+  contain: layout style;
+  transform: translateZ(0);
+}
+
+/* Smooth scrolling enhancement */
+.videos-container {
+  scroll-snap-stop: always;
+  overscroll-behavior-y: contain;
+}
+
+/* Video quality optimization */
+.video-player {
+  -webkit-video-playsinline: true;
+  -webkit-playsinline: true;
+}
+
+/* Touch improvements */
+.video-player {
+  touch-action: manipulation;
+}
+
+.videos-container {
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Hover effects for desktop */
+@media (min-width: 769px) {
+  .video-item:hover .action-buttons {
+    transform: translateY(-10px);
+    transition: transform 0.2s ease;
+  }
+
+  .videos-container:hover {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* Print styles */
+@media print {
+  .view-food-container {
+    display: none;
+  }
+}
+
+/* Additional mobile-specific enhancements */
+@media (max-width: 768px) {
+  /* Prevent zoom on double tap */
+  * {
+    touch-action: manipulation;
+  }
+
+  /* Improve video loading on mobile */
+  .video-player {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* Safe area adjustments for notched devices */
+  .back-button {
+    top: max(20px, env(safe-area-inset-top, 20px));
+  }
+
+  .video-controls {
+    top: max(20px, env(safe-area-inset-top, 20px));
+  }
+
+  .video-overlay {
+    padding-bottom: max(30px, env(safe-area-inset-bottom, 30px));
+  }
+}
+
+/* iOS-specific adjustments */
+@supports (-webkit-touch-callout: none) {
+  .videos-container {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .video-player {
+    -webkit-video-playsinline: true;
+  }
+}
+
+/* Android-specific adjustments */
+@media (max-width: 768px) {
+  .videos-container {
+    overscroll-behavior: contain;
+  }
+}
+
+
+/* Video Actions Container */
+.video-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Profile Image Link */
+.profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.profile-link:hover {
+  transform: scale(1.05);
+}
+
+.profile-image {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.profile-link:hover .profile-image {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .video-actions {
+    gap: 12px;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .video-actions {
+    gap: 15px;
+  }
+  
+  .profile-image {
+    width: 44px;
+    height: 44px;
+  }
+}

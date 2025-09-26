@@ -1,0 +1,85 @@
+/* All the same base styles as UserSignup.css */
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  padding-left: 28px;
+}
+
+.remember-me input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #f8f9fc;
+  border: 1.5px solid #e1e5eb;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.remember-me input:checked ~ .checkmark {
+  background-color: #ff4757;
+  border-color: #ff4757;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.remember-me input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.remember-me .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.forgot-password {
+  color: #ff4757;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #ff2e43;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for login */
+@media (max-width: 576px) {
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .forgot-password {
+    margin-left: 28px;
+  }
+}

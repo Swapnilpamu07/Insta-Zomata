@@ -1,0 +1,45 @@
+/* All the same base styles as UserSignup.css */
+
+.partner-auth .auth-shape {
+  background: linear-gradient(135deg, rgba(58, 83, 155, 0.1) 0%, rgba(26, 188, 156, 0.1) 100%);
+}
+
+.partner-auth .auth-title {
+  background: linear-gradient(135deg, #3a539b 0%, #1abc9c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.partner-auth .auth-button {
+  background: linear-gradient(135deg, #3a539b 0%, #1abc9c 100%);
+  box-shadow: 0 4px 15px rgba(58, 83, 155, 0.3);
+}
+
+.partner-auth .auth-button:hover {
+  box-shadow: 0 6px 20px rgba(58, 83, 155, 0.4);
+}
+
+.partner-auth .form-input:focus {
+  border-color: #3a539b;
+  box-shadow: 0 0 0 3px rgba(58, 83, 155, 0.2);
+}
+
+.partner-auth .form-input:focus + .input-icon {
+  color: #3a539b;
+}
+
+.partner-auth .auth-link {
+  color: #3a539b;
+}
+
+.partner-auth .auth-link:hover {
+  color: #2c3e50;
+}
+
+/* Responsive adjustments for partner signup */
+@media (max-width: 768px) {
+  .partner-auth .auth-card {
+    max-width: 500px;
+  }
+}

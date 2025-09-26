@@ -1,0 +1,607 @@
+html, body {
+    height: 100%;
+    overflow-y: auto;
+}
+/* Food Partner Profile Main Container - Fixed Scrolling */
+.fpp-container {
+    min-height: 100%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* REMOVE fixed height and overflow from main container */
+    padding-bottom: 20px; /* Add some padding at bottom */
+}
+
+/* Header Styles */
+.fpp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.fpp-header-title {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.fpp-header-spacer {
+    width: 100px;
+}
+
+.fpp-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+.fpp-back-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.fpp-back-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Loading States */
+.fpp-loading,
+.fpp-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use viewport height */
+    text-align: center;
+    padding: 40px;
+}
+
+.fpp-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #9d8854;
+    border-radius: 50%;
+    animation: fpp-spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes fpp-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Profile Section */
+.fpp-profile-section {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 20px;
+    overflow: hidden;
+}
+
+.fpp-profile-container {
+    display: flex;
+    padding: 40px;
+    gap: 40px;
+    align-items: center;
+}
+
+.fpp-image-container {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.fpp-profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 4px solid #9d8854;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.fpp-online-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border: 3px solid white;
+    border-radius: 50%;
+}
+
+.fpp-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fpp-badge {
+    background: linear-gradient(135deg, #9d8854, #b8a46d);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    align-self: flex-start;
+}
+
+.fpp-restaurant-name {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.fpp-owner-name {
+    font-size: 1.3rem;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 500;
+}
+
+.fpp-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fpp-stars {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+
+.fpp-rating-text {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.fpp-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+.fpp-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.fpp-contact-icon {
+    font-size: 1.3rem;
+    width: 30px;
+    text-align: center;
+}
+
+.fpp-action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.fpp-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.fpp-call-btn {
+    background: #28a745;
+    color: white;
+}
+
+.fpp-direction-btn {
+    background: #6c757d;
+    color: white;
+}
+
+.fpp-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Videos Section - FIXED SCROLLING */
+.fpp-videos-section {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 20px;
+    padding: 30px;
+    /* REMOVE max-height and overflow from this container */
+    /* Let the content flow naturally */
+}
+
+.fpp-videos-header {
+    margin-bottom: 30px;
+}
+
+.fpp-videos-title-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.fpp-videos-title {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 700;
+}
+
+.fpp-videos-count {
+    background: #e9ecef;
+    color: #6c757d;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.fpp-videos-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.fpp-videos-filter {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.fpp-filter-btn {
+    padding: 8px 16px;
+    border: 2px solid #e9ecef;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.fpp-filter-btn.active,
+.fpp-filter-btn:hover {
+    background: #9d8854;
+    color: white;
+    border-color: #9d8854;
+}
+
+.fpp-no-videos {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+}
+
+.fpp-no-videos-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.fpp-no-videos h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+/* Videos Grid - Let it flow naturally */
+.fpp-videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    /* Remove fixed height and overflow */
+}
+
+/* Video Card */
+.fpp-video-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #f1f3f4;
+}
+
+.fpp-video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.fpp-video-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
+    overflow: hidden;
+    background: #000;
+}
+
+.fpp-video-thumbnail video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.fpp-video-card:hover .fpp-video-thumbnail video {
+    transform: scale(1.05);
+}
+
+.fpp-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fpp-video-card:hover .fpp-play-overlay {
+    opacity: 1;
+}
+
+.fpp-play-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(157, 136, 84, 0.9);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.fpp-play-btn:hover {
+    background: rgba(157, 136, 84, 1);
+    transform: scale(1.1);
+}
+
+.fpp-play-btn svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+    margin-left: 3px;
+}
+
+.fpp-video-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.fpp-video-info {
+    padding: 20px;
+}
+
+.fpp-video-title {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.fpp-video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Video Modal */
+.fpp-video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.fpp-modal-content {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+}
+
+.fpp-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.fpp-modal-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.fpp-modal-close svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.fpp-modal-video {
+    width: 100%;
+    height: 450px;
+    background: #000;
+}
+
+.fpp-modal-info {
+    padding: 20px;
+}
+
+.fpp-modal-info h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.fpp-modal-info p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .fpp-container {
+        padding: 0;
+    }
+    
+    .fpp-header {
+        padding: 15px;
+    }
+    
+    .fpp-header-title {
+        font-size: 1.2rem;
+    }
+    
+    .fpp-profile-section {
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .fpp-profile-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+        gap: 25px;
+    }
+    
+    .fpp-profile-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .fpp-restaurant-name {
+        font-size: 2rem;
+    }
+    
+    .fpp-videos-section {
+        margin: 10px;
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
+    .fpp-videos-title {
+        font-size: 1.8rem;
+    }
+    
+    .fpp-videos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .fpp-action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .fpp-videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .fpp-profile-container {
+        padding: 30px;
+    }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+    .fpp-videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .fpp-video-card:hover {
+        transform: none;
+    }
+    
+    .fpp-play-overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .fpp-video-card,
+    .fpp-play-btn,
+    .fpp-action-btn {
+        transition: none;
+    }
+    
+    .fpp-video-card:hover {
+        transform: none;
+    }
+}
