@@ -1,33 +1,46 @@
-name: Basic CI
+name: Test CI
 
 on:
   push:
+    branches:
+      - main
+      - feature
   pull_request:
+    branches:
+      - main
+      - feature
 
 jobs:
-  build:
+  frontend:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+        run: npm install
+        working-directory: frontend
 
       - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
-
-
-
-      - name: Build project
         run: npm run build
+        working-directory: frontend
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install backend dependencies
+        run: npm install
+        working-directory: backend
