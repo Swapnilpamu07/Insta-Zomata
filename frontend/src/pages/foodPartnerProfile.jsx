@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import '../css/FoodPartnerProfile.css';
+import '../css/foodPartnerProfile.css';
 
 function FoodPartnerProfile() {
     const { video } = useParams();

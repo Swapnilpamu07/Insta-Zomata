@@ -25,6 +25,7 @@ const FoodPartnerLogin = () => {
         console.log(error);
       });
   }
+  let c=0;
   return (
     <div className="auth-container partner-auth">
       <div className="auth-background">

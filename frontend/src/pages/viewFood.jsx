@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/ViewFood.css";
+import "../css/viewFood.css";
 import axios from "axios";
 
 function ViewFood() {
